@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- 向 classpath下 添 加 JDBC驱 动 -->
+	<classPathEntry location="./lib/mysql-connector-java-5.1.18.jar" />
+	
+	<context id="MysqlTables_customer_cust" targetRuntime="MyBatis3">
+		<!-- 序列化插件 -->
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+	    <!-- EqualsHashCodePlugin -->
+	   <!--  <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" /> -->
+		<!-- 重写toString插件 -->
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+		
+		<commentGenerator>
+			<!-- 抑制生成代码的注释  true没有注释，false有注释-->
+			<property name="suppressAllComments" value="true" />
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+		<!-- 元 素 定 义 如 何 连 接 目 标 数 据 库 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/anna-xxgk"
+			userId="root" password="root">
+		</jdbcConnection>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!-- 元 素 来 指 定 生 成Java模 型 对 象 所 属 的 包 -->
+		<javaModelGenerator
+			targetPackage="com.rick.generator.entity"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- 元 素 指 定 生 成 SQL映 射 文 件 的 位 置 与 目 标 项 目 -->
+		<sqlMapGenerator
+			targetPackage="com.rick.generator.mapper"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<javaClientGenerator type="ANNOTATEDMAPPER"
+			targetPackage="com.rick.generator.mapper"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+
+		<!--增加要生成的表-->
+        <table tableName="t_user" domainObjectName="User">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true" type="post"></generatedKey>
+		</table>
+	</context>
+</generatorConfiguration>
